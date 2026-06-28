@@ -50,7 +50,7 @@ function App() {
       setIsLoading(true);
       const response = await taskApi.getTasks();
       if (response.success) {
-        setTasks(response.data);
+        setTasks(Array.isArray(response.data) ? response.data : []);
       }
     } catch (err) {
       addToast(err.message || 'Could not load tasks from database.', 'error');

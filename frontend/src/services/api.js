@@ -1,4 +1,9 @@
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/tasks';
+let baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/tasks';
+if (baseUrl.endsWith('/')) baseUrl = baseUrl.slice(0, -1);
+if (!baseUrl.endsWith('/api/tasks')) {
+  baseUrl = `${baseUrl}/api/tasks`;
+}
+const API_URL = baseUrl;
 
 
 class ApiError extends Error {
